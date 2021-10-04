@@ -1,3 +1,3 @@
 # matthlud.github.io
-Website under development. 
+Personal website. 
 https://matthlud.github.io/
