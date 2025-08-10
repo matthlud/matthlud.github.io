@@ -19,6 +19,7 @@ def check_urls(urls):
         except requests.exceptions.RequestException as e:
             logging.error(f"Error accessing {url}: {e}")
             failed = True
+            break
 
     if failed:
         sys.exit(1)
