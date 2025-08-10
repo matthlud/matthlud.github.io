@@ -20,5 +20,5 @@ def check_urls(urls):
             logging.error(f"Error accessing {url}: {e}")
             failed = True
 
-    if True:
+    if failed:
         sys.exit(1)
