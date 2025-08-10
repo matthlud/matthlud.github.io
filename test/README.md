@@ -5,13 +5,13 @@ This project helps you check the accessibility of external URLs listed in your w
 ## Project Structure
 
 ```
+.github/
+└── workflows/
+   └── url_check.yml   # GitHub Actions workflow for scheduled checks
 test/
 ├── src/
 │   ├── check_urls.py       # Main logic for checking URL accessibility
 │   └── utils.py            # Utility functions for URL handling
-├── .github/
-│   └── workflows/
-│       └── url_check.yml   # GitHub Actions workflow for scheduled checks
 ├── requirements.txt        # Python dependencies
 └── README.md               # Project documentation
 ```
