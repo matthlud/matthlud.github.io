@@ -1,4 +1,4 @@
-name: URL Check
+name: check-url-sanity
 
 on:
   push:
