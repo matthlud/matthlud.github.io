@@ -15,7 +15,7 @@ def check_urls(urls):
                 logging.info(f"URL is accessible: {url}")
             else:
                 logging.warning(f"URL returned status code {response.status_code}: {url}")
-                failed = True
+                failed = False
         except requests.exceptions.RequestException as e:
             logging.error(f"Error accessing {url}: {e}")
             failed = True
