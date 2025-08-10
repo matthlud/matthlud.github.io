@@ -25,4 +25,4 @@ jobs:
 
       - name: Run URL check
         run: |
-          python test/src/check_urls.py
+          python test/src/main.py
