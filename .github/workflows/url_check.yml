@@ -3,6 +3,7 @@ name: URL Check
 on:
   schedule:
     - cron: '0 0 * * *'  # Runs every night at midnight
+    push:
 
 jobs:
   check_urls:
