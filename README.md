@@ -1,3 +1,3 @@
 # matthlud.github.io
-Personal website. 
+Personal website: 
 https://matthlud.github.io/
