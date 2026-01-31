@@ -20,7 +20,7 @@ test/
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone git@github.com:matthlud/matthlud.github.io.git
    cd test
    ```
 
