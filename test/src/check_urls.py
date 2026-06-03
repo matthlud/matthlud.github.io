@@ -30,7 +30,7 @@ def check_urls(urls, timeout=10, max_retries=2):
     for url in urls:
         try:
             response = session.get(url, timeout=timeout)
-            if response.status_code == 200:
+            if 200 <= response.status_code < 300:
                 logging.info(f"URL is accessible: {url}")
             else:
                 logging.warning(f"URL returned status code {response.status_code}: {url}")
