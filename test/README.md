@@ -43,7 +43,7 @@ test/
 
 ## GitHub Actions
 
-The project includes a GitHub Actions workflow so you can automatically check URL accessibility every night. This ensures regular monitoring without manual intervention.
+The project includes a GitHub Actions workflow that runs nightly (scheduled), on push, and on pull requests. This ensures regular monitoring and also checks incoming changes.
 
 ### Workflow Configuration
 
