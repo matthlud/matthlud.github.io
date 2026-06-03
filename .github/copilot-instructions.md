@@ -38,6 +38,7 @@ This file gives Copilot sessions focused, repository-specific guidance so sugges
 - Tests expect to be run from the repository root and default to `index.html` (see `test/src/main.py: html_path = "index.html"`). If HTML is moved, update `main.py` or pass a different path when invoking the utilities.
 - Only absolute `http`/`https` links are checked. Relative links, anchors, `mailto:`, etc., are ignored (see `load_urls_from_html`).
 - `check_urls` logs results and calls `sys.exit(1)` when there are failures; CI relies on this non-zero exit code to mark the run as failed.
+- A skiplist is available at `test/skip_domains.txt` (one domain per line). Domains in that file are skipped during CI runs to avoid failures caused by paywalled or anti-bot protected sites. Edit that file to customize behavior.
 - The checker uses retries for transient server errors (429, 5xx). Consider adjusting `timeout` and `max_retries` in `check_urls` for flaky external services.
 - The workflow installs dependencies from `test/requirements.txt` — any dependency added there should be compatible with Python 3.8 (or update the workflow if changing the runtime).
 

@@ -27,6 +27,27 @@ def check_urls(urls, timeout=10, max_retries=2):
         "Accept-Language": "en-US,en;q=0.5",
         "Referer": "https://matthlud.github.io/"
     })
+
+    # Load skiplist from test/skip_domains.txt (if present). No built-in defaults — edit the skipfile to configure.
+    from urllib.parse import urlparse
+    from pathlib import Path
+    skip_file = Path(__file__).resolve().parents[1] / 'skip_domains.txt'
+    skip_domains = []
+    if skip_file.exists():
+        with open(skip_file, 'r', encoding='utf-8') as f:
+            skip_domains = [line.strip().lower() for line in f if line.strip() and not line.strip().startswith('#')]
+
+    def is_skipped(url):
+        try:
+            host = urlparse(url).hostname or ''
+            host = host.lower()
+            for d in skip_domains:
+                if host == d or host.endswith('.' + d):
+                    return True
+            return False
+        except Exception:
+            return False
+
     if retry is not None:
         adapter = HTTPAdapter(max_retries=retry)
         session.mount("http://", adapter)
@@ -35,6 +56,10 @@ def check_urls(urls, timeout=10, max_retries=2):
     failed_urls = []
 
     for url in urls:
+        # Skip known paywalled or anti-bot domains per skiplist
+        if is_skipped(url):
+            logging.info(f"Skipping URL (skiplist): {url}")
+            continue
         try:
             response = session.get(url, timeout=timeout)
             if 200 <= response.status_code < 300:

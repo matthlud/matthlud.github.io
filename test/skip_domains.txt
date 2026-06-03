@@ -1,0 +1,10 @@
+# test/skip_domains.txt — domains to skip during CI link checks
+# Add one domain per line. Lines starting with # are comments. Subdomains are matched by suffix.
+
+linkedin.com
+scholar.google.com
+researchgate.net
+vimeo.com
+sciencedirect.com
+dx.doi.org
+doi.org

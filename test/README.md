@@ -48,3 +48,7 @@ The project includes a GitHub Actions workflow that runs nightly (scheduled), on
 ### Workflow Configuration
 
 The workflow is defined in `.github/workflows/url_check.yml`. It sets up the environment, installs dependencies, and runs the `check_urls.py` script.
+
+Skiplist for blocking domains
+
+A skiplist file at `test/skip_domains.txt` (one domain per line) contains domains that commonly block automated requests or are paywalled. The checker will skip URLs whose hostname matches an entry in that file. Edit or remove the file to change behavior. The repository includes a sample skiplist that CI uses.
