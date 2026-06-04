@@ -1,5 +1,5 @@
 from utils import load_urls_from_html
-from check_urls import check_urls
+from link_checker import check_urls
 
 
 def main():
