@@ -1,19 +1,19 @@
 # URL Accessibility Checker
 
-This project helps you check the accessibility of external URLs listed in your website’s `index.html` file. You can use the included Python script to send HTTP requests to each URL and log the results. The setup also allows you to run these checks automatically every night using GitHub Actions.
+This project helps you check the accessibility of external URLs listed in your website’s `index.html` file. The test tooling has been reworked to use pytest and a simpler, importable module for unit testing.
 
 ## Project Structure
 
 ```
 .github/
 └── workflows/
-   └── url_check.yml   # GitHub Actions workflow for scheduled checks
+   └── url_check.yml   # GitHub Actions workflow (runs pytest)
 test/
 ├── src/
-│   ├── check_urls.py       # Main logic for checking URL accessibility
-│   └── utils.py            # Utility functions for URL handling
-├── requirements.txt        # Python dependencies
-└── README.md               # Project documentation
+│   ├── link_checker.py    # Importable link-checker module
+│   └── utils.py           # Utility functions for URL handling
+├── requirements.txt       # Python dependencies (pytest included)
+└── README.md              # Project documentation
 ```
 
 ## Setup Instructions
@@ -25,30 +25,28 @@ test/
    ```
 
 2. **Install dependencies**:
-   It is recommended that you use a virtual environment. You can create one using `venv`:
+   It is recommended to use a virtual environment:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
-   Then install the required packages:
-   ```bash
    pip install -r requirements.txt
    ```
 
-3. **Run the URL checker locally**:
-   You can run the URL checker script directly:
+3. **Run tests locally (pytest)**:
    ```bash
-   python src/check_urls.py
+   pytest -q test/
    ```
 
-## GitHub Actions
+4. **(Optional) Run the legacy checker**:
+   A thin CLI runner remains (`test/src/main.py`) which invokes the importable module:
+   ```bash
+   python test/src/main.py
+   ```
 
-The project includes a GitHub Actions workflow that runs nightly (scheduled), on push, and on pull requests. This ensures regular monitoring and also checks incoming changes.
+## Skiplist format
 
-### Workflow Configuration
+The skiplist at `test/skip_domains.txt` now uses a JSON array format (one file, JSON array). The checker will also accept legacy one-domain-per-line content for backward compatibility.
 
-The workflow is defined in `.github/workflows/url_check.yml`. It sets up the environment, installs dependencies, and runs the `check_urls.py` script.
+## CI
 
-Skiplist for blocking domains
-
-A skiplist file at `test/skip_domains.txt` (one domain per line) contains domains that commonly block automated requests or are paywalled. The checker will skip URLs whose hostname matches an entry in that file. Edit or remove the file to change behavior. The repository includes a sample skiplist that CI uses.
+The GitHub Actions workflow was updated to run `pytest` instead of invoking the checker script directly.

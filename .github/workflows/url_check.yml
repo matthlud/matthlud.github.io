@@ -24,6 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r test/requirements.txt
 
-      - name: Run URL check
+      - name: Run tests
         run: |
-          python test/src/main.py
+          pytest -q test/
