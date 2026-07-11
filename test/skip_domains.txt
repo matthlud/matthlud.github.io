@@ -5,5 +5,6 @@
   "vimeo.com",
   "sciencedirect.com",
   "dx.doi.org",
-  "doi.org"
+  "doi.org",
+  "mediatum.ub.tum.de"
 ]
